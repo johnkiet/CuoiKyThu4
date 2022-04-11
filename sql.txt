@@ -1,0 +1,447 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 10, 2022 lúc 04:02 PM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 8.1.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `shop_php`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_admin`
+--
+
+CREATE TABLE `tbl_admin` (
+  `adminId` int(11) NOT NULL,
+  `adminName` varchar(255) NOT NULL,
+  `adminEmail` varchar(255) NOT NULL,
+  `adminUser` varchar(255) NOT NULL,
+  `adminPass` varchar(255) NOT NULL,
+  `level` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_admin`
+--
+
+INSERT INTO `tbl_admin` (`adminId`, `adminName`, `adminEmail`, `adminUser`, `adminPass`, `level`) VALUES
+(1, 'kiet ne', 'taone6594@gmail.com', 'Admin', '0192023a7bbd73250516f069df18b500', 0),
+(2, 'Nguyen Khuc Khai Hoan', 'Nguyenkhuckhaihoan@gmail.com', 'Admin2', 'e3afed0047b08059d0fada10f400c1e5', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_brand`
+--
+
+CREATE TABLE `tbl_brand` (
+  `brandId` int(11) UNSIGNED NOT NULL,
+  `brandName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_brand`
+--
+
+INSERT INTO `tbl_brand` (`brandId`, `brandName`) VALUES
+(14, 'Panasonic'),
+(15, 'Sam Sung'),
+(16, 'Toshiba'),
+(17, 'Sony'),
+(18, 'Nanomax'),
+(20, 'LG');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_cart`
+--
+
+CREATE TABLE `tbl_cart` (
+  `cartId` int(11) NOT NULL,
+  `productId` int(11) UNSIGNED NOT NULL,
+  `sessionId` varchar(500) NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `images` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_cart`
+--
+
+INSERT INTO `tbl_cart` (`cartId`, `productId`, `sessionId`, `productName`, `price`, `quantity`, `images`) VALUES
+(93, 37, 'cbvmi7care67mnkplmh1ehjlkb', 'Tủ lạnh Panasonic', '16000000', 1, '6df93fef23.jpg'),
+(94, 44, 'cbvmi7care67mnkplmh1ehjlkb', 'Máy lạnh Samsung', '17500000', 1, '7482c9fc05.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_category`
+--
+
+CREATE TABLE `tbl_category` (
+  `categoryId` int(11) UNSIGNED NOT NULL,
+  `categoryName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_category`
+--
+
+INSERT INTO `tbl_category` (`categoryId`, `categoryName`) VALUES
+(26, 'Tủ Lạnh'),
+(27, 'Máy Giặt'),
+(28, 'Máy Lạnh'),
+(29, 'TiVi'),
+(30, 'Loa');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_compare`
+--
+
+CREATE TABLE `tbl_compare` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `productId` int(11) UNSIGNED NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_customer`
+--
+
+CREATE TABLE `tbl_customer` (
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `zip_code` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_customer`
+--
+
+INSERT INTO `tbl_customer` (`customer_id`, `name`, `address`, `zip_code`, `phone`, `email`, `password`, `city`, `country`) VALUES
+(3, 'Lê Kiệt nè', '62 tân hòa 2', '87263-21736bc    ', '0389941610    ', 'ltk08122000@gmail.com    ', '8a24367a1f46c141048752f2d5bbd14b', 'Hồ Chí Minh', 'VN'),
+(4, 'Lê Kiệt nè', '62 tân hòa 2', '87263-21736bc', '0389941610', 'taone6594@gmail.com', '8a24367a1f46c141048752f2d5bbd14b', 'Hồ Chí Minh', 'VN'),
+(5, 'Nguyễn Khúc Khải Hoàn', 'abcd', 'abcd   ', '0123456', 'Nguyenkhuckhaihoan@gmail.com   ', 'e10adc3949ba59abbe56e057f20f883e', 'TPHCM', 'Viet nam'),
+(6, 'Duyy Thanh', '25 Đường số 19', '3354-skld', '0359213225', 'npduythanhh@gmail.com', '8a24367a1f46c141048752f2d5bbd14b', 'An Giang', 'null'),
+(7, 'Thanh', '457', '87263-21736bc', '12345678', 'npduythanh27@gmail.com', '5c1c06ce57205a30ca2c47dbb81b68a5', 'hồ chí minh', 'VN');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_order`
+--
+
+CREATE TABLE `tbl_order` (
+  `id` int(11) NOT NULL,
+  `productId` int(11) UNSIGNED NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `date_order` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_order`
+--
+
+INSERT INTO `tbl_order` (`id`, `productId`, `productName`, `customer_id`, `quantity`, `price`, `image`, `date_order`, `status`) VALUES
+(36, 44, 'Máy lạnh Samsung', 7, 1, '17500000', '7482c9fc05.jpg', '2022-04-08 11:31:30', 2),
+(37, 40, 'Máy giặt Toshiba', 7, 1, '6500000', '4a68ad6752.jpg', '2022-04-08 11:31:30', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_product`
+--
+
+CREATE TABLE `tbl_product` (
+  `productId` int(11) UNSIGNED NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `categoryId` int(11) UNSIGNED NOT NULL,
+  `brandId` int(11) UNSIGNED NOT NULL,
+  `product_desc` text NOT NULL,
+  `product_type` int(11) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `product_image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_product`
+--
+
+INSERT INTO `tbl_product` (`productId`, `productName`, `categoryId`, `brandId`, `product_desc`, `product_type`, `price`, `product_image`) VALUES
+(31, 'Smart Tivi LG 4K', 29, 20, '<p>Smart Tivi LG 4K 55 inch 55UP7750PTB được thiết kế m&agrave;u đen thanh lịch, trang nh&atilde;, m&agrave;n h&igrave;nh tivi si&ecirc;u mỏng cho trải nghiệm xem tuyệt vời nhất. B&ecirc;n cạnh đ&oacute;, tivi c&ograve;n sở hữu gi&aacute; đỡ chữ V &uacute;p ngược chắc chắn gi&uacute;p tivi lu&ocirc;n đứng vững. Tivi LG 55 inch dễ d&agrave;ng lắp đặt để kệ tủ hay treo tường, sử dụng ph&ugrave; hợp cho ph&ograve;ng kh&aacute;ch, ph&ograve;ng ngủ gia đ&igrave;nh, hay ph&ograve;ng họp nhỏ..</p>', 1, '16500000', '281cdf9b33.jpeg'),
+(32, 'Smart Tivi Samsung 4K', 29, 15, '<p>Smart Tivi Samsung 4K 55 inch 55TU6900 được thiết kế m&agrave;n h&igrave;nh kh&ocirc;ng viền 3 cạnh tinh tế, m&agrave;u đen thanh lịch. Kiểu d&aacute;ng thanh mảnh, hứa hẹn sẽ l&agrave;m nổi bật kh&ocirc;ng gian nội thất nh&agrave; bạn. Tivi Samsung 55 inch ph&ugrave; hợp trưng b&agrave;y những kh&ocirc;ng gian vừa như: ph&ograve;ng kh&aacute;ch, ph&ograve;ng ngủ</p>', 1, '17500000', '3516d86f7e.jpg'),
+(33, 'Android Tivi Sony 4K', 29, 17, '<p>Tivi LED Sony KD-43X75 l&agrave; tivi m&agrave;n h&igrave;nh phẳng, cạnh viền được l&agrave;m mỏng tinh tế cho bạn ho&agrave;n to&agrave;n đắm ch&igrave;m v&agrave;o nội dung đang được tr&igrave;nh chiếu tr&ecirc;n tivi. M&agrave;n h&igrave;nh tivi 43 inch sử dụng ch&acirc;n đế h&igrave;nh chữ V ngược thanh mảnh nhưng vẫn chắc chắn, dễ d&agrave;ng bố tr&iacute; gọn đẹp trong mọi kh&ocirc;ng gian hoặc bạn c&oacute; thể treo tường gọn g&agrave;ng trong ph&ograve;ng kh&aacute;ch, ph&ograve;ng họp của bạn th&ecirc;m cao cấp.</p>', 0, '13000000', '01c5c068d3.jpg'),
+(34, 'Loa kéoNanomax', 30, 18, '<p>Thiết kế sang trọng, bền đẹp với th&ugrave;ng gỗ sơn gai m&agrave;u đen, mặt trước phủ m&agrave;u v&agrave;ng đồng bắt mắt Sử dụng th&ugrave;ng gỗ sơn gai kh&ocirc;ng chỉ cho loa k&eacute;o cứng c&aacute;p, vững chắc m&agrave; c&ograve;n gi&uacute;p chống trầy, dễ d&agrave;ng vệ sinh, ph&aacute;t ra &acirc;m thanh hay hơn.</p>', 1, '6000000', '3eca267bf6.jpg'),
+(35, 'Loa Tháp Samsung', 30, 15, '<p>Thiết kế 2 mặt loa v&aacute;t cạnh độc đ&aacute;o, &acirc;m thanh đa hướng sống động Loa Th&aacute;p Samsung MX-T70/XV sở hữu thiết kế h&igrave;nh th&aacute;p độc đ&aacute;o c&ugrave;ng 2 mặt loa tạo ra &acirc;m thanh đa hướng sống động, lan tỏa mạnh mẽ lấp đầy một kh&ocirc;ng gian rộng lớn cho bạn tận hưởng thế giới &acirc;m nhạc đầy sắc m&agrave;u v&agrave; những trải nghiệm &acirc;m thanh thật ho&agrave;n hảo.</p>', 0, '8200000', '928e699e48.jpg'),
+(36, 'Loa kéo Nanomax S', 30, 18, '<p>Thiết kế sang trọng đẹp mắt Loa k&eacute;o Karaoke Nanomax S-1000 450W c&oacute; thiết kế chắc chắn c&ugrave;ng t&ocirc;ng m&agrave;u v&agrave;ng sang trọng, tạo điểm nhấn độc đ&aacute;o cho kh&ocirc;ng gian của bạn.</p>', 0, '5600000', '61f6f9ef20.jpg'),
+(37, 'Tủ lạnh Panasonic', 26, 14, '<p>Tủ lạnh Panasonic Inverter 322 l&iacute;t NR-BC360QKVN trang bị ngăn đ&ocirc;ng mềm thế hệ mới Prime Fresh+ với mức nhiệt độ ở -3 độ C gi&uacute;p thực phẩm tươi sống được l&agrave;m đ&ocirc;ng nhanh m&agrave; kh&ocirc;ng bị đ&ocirc;ng đ&aacute; v&agrave; tươi mới l&ecirc;n đến 7 ng&agrave;y. Do đ&oacute;, thực phẩm giữ được c&aacute;c chất dinh dưỡng, độ thơm ngon v&agrave; bạn kh&ocirc;ng phải tốn th&ecirc;m nhiều thời gian để r&atilde; đ&ocirc;ng trước khi chế biến.</p>', 1, '16000000', '6df93fef23.jpg'),
+(38, 'Tủ lạnh Panasonic XS', 26, 14, '<p>Kh&aacute;ng khuẩn, loại bỏ m&ugrave;i h&ocirc;i mạnh mẽ với c&ocirc;ng nghệ Ag Clean Tủ lạnh Panasonic Inverter 188 l&iacute;t NR-BA229PKVN sở hữu c&ocirc;ng nghệ Ag Clean, c&oacute; khả năng giải ph&oacute;ng c&aacute;c ion Ag+ gi&uacute;p kh&aacute;ng khuẩn v&agrave; loại bỏ m&ugrave;i h&ocirc;i từ thực phẩm một c&aacute;ch hiệu quả, g&oacute;p phần l&agrave;m cho thực phẩm được thơm ngon, kh&ocirc;ng bị lẫn m&ugrave;i.</p>', 0, '6500000', 'eeea488c2c.jpg'),
+(39, 'Tủ lạnh Toshiba', 26, 16, '<p>Với kiểu tủ ngăn đ&aacute; tr&ecirc;n, chiếc tủ lạnh Toshiba Inverter 180 l&iacute;t GR-B22VU UKG được thiết kế nhỏ gọn nhưng vẫn to&aacute;t l&ecirc;n vẻ đẹp hiện đại bởi t&ocirc;ng m&agrave;u đen tuyền sang trọng. Dễ d&agrave;ng đặt ở bất k&igrave; vị tr&iacute; n&agrave;o trong nh&agrave;, từ ph&ograve;ng kh&aacute;ch đến ph&ograve;ng bếp.</p>', 0, '1000000', '4643804439.jpg'),
+(40, 'Máy giặt Toshiba', 27, 16, '<p>M&aacute;y giặt Toshiba AW-F920LV WB được thiết kế với vẻ ngo&agrave;i độc đ&aacute;o c&ugrave;ng m&agrave;u sắc cũng kh&aacute; l&agrave; tươi mới, mang lại sự sinh động hiện đại hơn cho căn nh&agrave; của bạn. Khối lượng giặt 8.2 kg của chiếc m&aacute;y giặt Toshiba n&agrave;y gi&uacute;p cho n&oacute; trở n&ecirc;n kh&aacute; ph&ugrave; hợp cho c&aacute;c gia đ&igrave;nh c&oacute; từ 3 - 5 th&agrave;nh vi&ecirc;n.</p>', 1, '6500000', '4a68ad6752.jpg'),
+(41, 'Máy giặt LG', 27, 20, '<p>M&aacute;y giặt Inverter sở hữu khả năng tự động điều chỉnh số v&ograve;ng quay ph&ugrave; hợp với từng điều kiện gi&uacute;p tăng hiệu quả khi giặt giũ, hoạt động &ecirc;m &aacute;i, tiết kiệm điện năng v&agrave; nước nhưng vẫn đảm bảo chất lượng giặt giũ sạch sẽ</p>', 0, '16000000', '1059903ee8.jpg'),
+(42, 'Máy giặt Samsung', 27, 15, '<p><span>Bảng điều khiển th&ocirc;ng minh AI Control n&agrave;y sẽ tự động ghi nhớ c&aacute;c chế độ giặt giũ m&agrave; bạn thường sử dụng, từ đ&oacute; sẽ tiến h&agrave;nh đề xuất chế độ giặt ph&ugrave; hợp với loại đồ theo th&oacute;i quen sử dụng. M&agrave;n h&igrave;nh hiển thị quy tr&igrave;nh giặt dễ hiểu, hướng dẫn th&ocirc;ng minh bất kỳ ai trong gia đ&igrave;nh đều c&oacute; thể sử dụng dễ d&agrave;ng.</span></p>', 0, '6500000', '8b6faffd73.jpg'),
+(43, 'Máy lạnh Toshiba', 28, 16, '<p><em><strong>M&aacute;y lạnh Toshiba 1 HP Inverter RAS-H10C4KCVG-V sử dụng c&ocirc;ng nghệ Hybrid Inverter v&agrave; chế độ Eco nhờ đ&oacute; m&aacute;y hoạt động ổn định, &ecirc;m &aacute;i v&agrave; tiết kiệm điện năng. Được trang bị c&aacute;c c&ocirc;ng nghệ khử khuẩn như bộ lọc chống nấm mốc, bộ lọc Toshiba IAQ v&agrave; c&ocirc;ng nghệ chống b&aacute;m bẩn Magic Coil mang đến kh&ocirc;ng kh&iacute; trong l&agrave;nh.</strong></em></p>\r\n<h3>Tổng quan thiết kế</h3>\r\n<p><strong>D&agrave;n lạnh</strong>: M&aacute;y lạnh Toshiba 1 HP Inverter RAS-H10C4KCVG-V mang sắc trắng, vỏ bằng nhựa, thiết kế viền bo tr&ograve;n, trơn nhẵn, bề mặt s&aacute;ng b&oacute;ng dễ lau ch&ugrave;i.</p>\r\n<p><strong>D&agrave;n n&oacute;ng:&nbsp;</strong>C&oacute; ống dẫn gas bằng đồng l&agrave;m lạnh nhanh ch&oacute;ng v&agrave; hạn chế ăn m&ograve;n qua thời gian sử dụng. L&aacute; tản nhiệt bằng nh&ocirc;m sẽ gọn nhẹ hơn so với l&aacute; tản nhiệt bằng đồng, dễ d&agrave;ng lắp đặt.</p>', 0, '13000000', '14e18444de.jpg'),
+(44, 'Máy lạnh Samsung', 28, 15, '<p>Nhờ c&ocirc;ng nghệ Digital Inverter ti&ecirc;n tiến,&nbsp;m&aacute;y c&oacute; thể tiết kiệm tối đa điện năng sử dụng m&agrave; vẫn hoạt động ổn định v&agrave; duy tr&igrave; tốt nhiệt độ mong muốn của người d&ugrave;ng m&agrave; kh&ocirc;ng cần bật tắt thường xuy&ecirc;n.</p>\r\n<p>T&iacute;ch hợp nam ch&acirc;m vĩnh cửu v&agrave; bộ giảm thanh b&ecirc;n trong gi&uacute;p m&aacute;y<strong>&nbsp;vận h&agrave;nh &ecirc;m &aacute;i, bền bỉ v&agrave; giảm thiểu tiếng ồn</strong>.</p>', 1, '17500000', '7482c9fc05.jpg'),
+(45, 'Máy lạnh Panasonic', 28, 14, '<p>M&aacute;y lạnh Panasonic Inverter 1 HP CU/CS-PU9XKH-8M mang sắc trắng thanh lịch, thiết kế đơn giản, tinh tế nhưng v&ocirc; c&ugrave;ng sang trọng, ph&ugrave; hợp với nhiều kh&ocirc;ng gian nội thất. C&ugrave;ng với đ&oacute; l&agrave; c&ocirc;ng suất l&agrave;m lạnh 1HP th&iacute;ch hợp cho những căn ph&ograve;ng c&oacute; diện t&iacute;ch dưới 15m2</p>', 0, '6000000', '53ed15b2fa.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_slider`
+--
+
+CREATE TABLE `tbl_slider` (
+  `sliderId` int(11) NOT NULL,
+  `sliderName` varchar(255) NOT NULL,
+  `sliderImage` varchar(255) NOT NULL,
+  `type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_slider`
+--
+
+INSERT INTO `tbl_slider` (`sliderId`, `sliderName`, `sliderImage`, `type`) VALUES
+(16, '1', '3eda00b326.jpg', 1),
+(17, '2', 'fd3888d845.jpg', 1),
+(18, '3', '6feb459299.jpg', 1),
+(19, '4', '66d0bdf4a0.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_wishlist`
+--
+
+CREATE TABLE `tbl_wishlist` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `productId` int(11) UNSIGNED NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_wishlist`
+--
+
+INSERT INTO `tbl_wishlist` (`id`, `customer_id`, `productId`, `productName`, `price`, `image`) VALUES
+(7, 6, 44, 'Máy lạnh Samsung', '17500000', '7482c9fc05.jpg');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  ADD PRIMARY KEY (`adminId`);
+
+--
+-- Chỉ mục cho bảng `tbl_brand`
+--
+ALTER TABLE `tbl_brand`
+  ADD PRIMARY KEY (`brandId`);
+
+--
+-- Chỉ mục cho bảng `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  ADD PRIMARY KEY (`cartId`),
+  ADD KEY `productId` (`productId`);
+
+--
+-- Chỉ mục cho bảng `tbl_category`
+--
+ALTER TABLE `tbl_category`
+  ADD PRIMARY KEY (`categoryId`);
+
+--
+-- Chỉ mục cho bảng `tbl_compare`
+--
+ALTER TABLE `tbl_compare`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_id` (`customer_id`,`productId`),
+  ADD KEY `productId` (`productId`);
+
+--
+-- Chỉ mục cho bảng `tbl_customer`
+--
+ALTER TABLE `tbl_customer`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productid` (`productId`,`customer_id`),
+  ADD KEY `customerId` (`customer_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_product`
+--
+ALTER TABLE `tbl_product`
+  ADD PRIMARY KEY (`productId`),
+  ADD KEY `categoryId` (`categoryId`,`brandId`),
+  ADD KEY `brandId` (`brandId`);
+
+--
+-- Chỉ mục cho bảng `tbl_slider`
+--
+ALTER TABLE `tbl_slider`
+  ADD PRIMARY KEY (`sliderId`);
+
+--
+-- Chỉ mục cho bảng `tbl_wishlist`
+--
+ALTER TABLE `tbl_wishlist`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_id` (`customer_id`,`productId`),
+  ADD KEY `productId` (`productId`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_brand`
+--
+ALTER TABLE `tbl_brand`
+  MODIFY `brandId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_category`
+--
+ALTER TABLE `tbl_category`
+  MODIFY `categoryId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_compare`
+--
+ALTER TABLE `tbl_compare`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_customer`
+--
+ALTER TABLE `tbl_customer`
+  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_product`
+--
+ALTER TABLE `tbl_product`
+  MODIFY `productId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_slider`
+--
+ALTER TABLE `tbl_slider`
+  MODIFY `sliderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_wishlist`
+--
+ALTER TABLE `tbl_wishlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  ADD CONSTRAINT `tbl_cart_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Các ràng buộc cho bảng `tbl_compare`
+--
+ALTER TABLE `tbl_compare`
+  ADD CONSTRAINT `tbl_compare_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tbl_compare_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Các ràng buộc cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD CONSTRAINT `tbl_order_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tbl_order_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Các ràng buộc cho bảng `tbl_product`
+--
+ALTER TABLE `tbl_product`
+  ADD CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `tbl_category` (`categoryId`),
+  ADD CONSTRAINT `tbl_product_ibfk_2` FOREIGN KEY (`brandId`) REFERENCES `tbl_brand` (`brandId`);
+
+--
+-- Các ràng buộc cho bảng `tbl_wishlist`
+--
+ALTER TABLE `tbl_wishlist`
+  ADD CONSTRAINT `tbl_wishlist_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `tbl_product` (`productId`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tbl_wishlist_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
